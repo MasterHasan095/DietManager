@@ -2,11 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';  // Import useNavigate
-import '../styles/Goal.css';  // Import CSS for styling
+import '../styles/Goal.css'  // Import CSS for styling
 
 const API_URL = 'http://localhost:8000'; // Replace with your actual backend URL
 
-const Goal = ({ user }) => {
+const Goal = ({ user, setUser }) => {
   const [userId, setUserId] = useState(user?.id || '');  // Default to logged-in user's ID
   const [protein, setProtein] = useState('');
   const [calories, setCalories] = useState('');
@@ -41,16 +41,25 @@ const Goal = ({ user }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const token = localStorage.getItem('token');  // Retrieve token from local storage
       await axios.post(`${API_URL}/setGoal`, {
         userId: userId,
         protein,
         calories,
         sugar,
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`,  // Set the Authorization header
+          'Content-Type': 'application/json',  // Optional: specify content type
+        }
       });
       alert('Goals set successfully!');
       // Optionally, fetch the updated goals after setting new ones
       const response = await axios.get(`${API_URL}/getGoal`, {
         params: { userId: userId },
+        headers: {
+          Authorization: `Bearer ${token}`,  // Include token in the GET request as well
+        }
       });
       setCurrentGoal(response.data.goal);
     } catch (err) {
@@ -58,9 +67,16 @@ const Goal = ({ user }) => {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');  // Remove token from local storage
+    setUser(null);  // Clear user state
+    navigate('/login');  // Redirect to login page
+  };
+
   return (
     <div>
       <h1>Hello, {user?.name || 'User'}!</h1>  {/* Greeting header */}
+      <button onClick={handleLogout}>Logout</button>  {/* Logout button */}
       <h2>Set Your Dietary Goals</h2>
       <form onSubmit={handleSubmit}>
         <label>Protein (grams):</label>

@@ -8,7 +8,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   const [user, setUser] = useState(null);  // State to hold logged-in user info
-
+const [goal, setGoal] = useState(null);  // State to hold logged-in user info
   return (
     <Router>
       <Routes>
@@ -19,8 +19,10 @@ function App() {
           path="/goals"
           element={
             <ProtectedRoute>
-              <Goal user={user} />
+              <Goal user={user} setUser={setUser} />
             </ProtectedRoute>
+
+            
           }
         />
       </Routes>
