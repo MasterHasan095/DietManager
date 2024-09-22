@@ -67,7 +67,7 @@ exports.register = async (req, res)=>{
     // }
 
     if (!firstName || !lastName || !username || !email || !password){
-            res.status(500).send("Invalid Data");
+           return res.status(500).send("Invalid Data");
     }
     // const{name, password} = req.body;
 
