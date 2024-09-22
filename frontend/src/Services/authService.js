@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/auth';  // Replace with your actual backend URL
+const API_URL = 'http://localhost:8000';  // Replace with your actual backend URL
 
 // Register new user
 export const register = async (userData) => {
