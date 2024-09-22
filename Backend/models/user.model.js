@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    return sequelize.define("user", {
+    return sequelize.define("users", {
         userId: {
             type: DataTypes.BIGINT,
             allowNull: false, // Fixed typo
