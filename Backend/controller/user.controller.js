@@ -5,29 +5,18 @@ const db = require("../models"); // Assuming db is the Sequelize instance
 
 exports.login = async (req, res) => {
 
-    if (req.body.name){
-        console.log(req.body.name)
-    }else{
-        console.log("No name");
-        res.status(500).send("Error during login, no name");
+    const {identifier, password} = req.body;
+
+    if (!identifier || !password){
+        return res.status(500).send("Invalid data");
     }
-
-    if (req.body.password){
-        console.log(req.body.password)
-    }else{
-        console.log("No password");
-        res.status(500).send("Error during login, no password");
-    }
-
-    const{name, password} = req.body;
-
     try {
         // Check if user exists by email or username
         const user = await db.users.findOne({
             where: {
                 [Op.or]: [
-                    { email: name },
-                    { username: name }
+                    { email: identifier },
+                    { username: identifier }
                 ]
             }
         });
