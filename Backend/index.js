@@ -13,19 +13,18 @@ app.listen(PORT, () => {
 })
 
 db.connectToSequelize.then(()=>{
-    console.log("Lookign as to what happens");
-    db.sequelize.sync()
-    .then(async () => {
-        await testThisOut();
-    })
+
 })
 
-async function testThisOut(){
-    console.log("In this out");
-    const Users = await db.users;
+app.get("/", (req, res) => {
+    return res.status(200).send("Initial link");
+});
+// async function testThisOut(){
+//     console.log("In this out");
+//     const Users = await db.users;
 
-    const data = await Users.findAll().then(data => {
-        return data.map(e=> ({data: e.userId}))
-    });
-    console.log(data)
-}
+//     const data = await Users.findAll().then(data => {
+//         return data.map(e=> ({data: e.userId}))
+//     });
+//     console.log(data)
+// }
