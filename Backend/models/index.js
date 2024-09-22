@@ -32,6 +32,11 @@ db.Sequelize = Sequelize;
 db.connectToSequelize = connectToSequelize();
 
 db.users = require("./user.model.js")(sequelize, Sequelize);
+db.meals = require("./meal.model.js")(sequelize, Sequelize);
+db.goals = require("./goal.model.js")(sequelize, Sequelize);
+db.types = require("./mealType.model.js")(sequelize, Sequelize);
+db.recomMeals = require("./recomm_meal.model.js")(sequelize, Sequelize);
+
 
 module.exports = db;
 // Call the function to connect using Sequelize

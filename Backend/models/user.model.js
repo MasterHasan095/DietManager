@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
     return sequelize.define("users", {
-        userId: {
+        id: {
             type: DataTypes.BIGINT,
             allowNull: false, // Fixed typo
             primaryKey: true,
