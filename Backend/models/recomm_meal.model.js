@@ -8,8 +8,19 @@ module.exports = (sequelize) => {
             primaryKey: true,
             autoIncrement: true
         },
+        userId: {
+            type: DataTypes.BIGINT,
+            references:{
+                model: 'users',
+                key: 'id'
+              },
+              allowNull: false // app_id can be null
+        },
         name: {
             type: DataTypes.STRING,
+        },
+        quantity: {
+            type: DataTypes.BIGINT
         },
         protein: {
             type: DataTypes.BIGINT,
