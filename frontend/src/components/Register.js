@@ -4,8 +4,8 @@ import { register } from '../Services/authService';
 import '../styles/login.css'; // Import the CSS for styling
 
 function Register() {
-  const [firstname, setFirstname] = useState('');
-  const [lastname, setLastname] = useState('');
+  const [firstName, setFirstname] = useState('');
+  const [lastName, setLastname] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,7 +21,7 @@ function Register() {
     }
 
     try {
-      await register({ firstname, lastname, username, email, password });
+      await register({ firstName, lastName, username, email, password });
       alert('Registration successful! Please login.');
       window.location = '/login';  // Redirect to login page
     } catch (err) {
@@ -37,7 +37,7 @@ function Register() {
           <label>First Name:</label>
           <input 
             type="text" 
-            value={firstname} 
+            value={firstName} 
             onChange={(e) => setFirstname(e.target.value)} 
             required 
           /><br/>
@@ -45,7 +45,7 @@ function Register() {
           <label>Last Name:</label>
           <input 
             type="text" 
-            value={lastname} 
+            value={lastName} 
             onChange={(e) => setLastname(e.target.value)} 
             required 
           /><br/>
