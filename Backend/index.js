@@ -14,7 +14,7 @@ app.listen(PORT, () => {
 })
 
 db.connectToSequelize.then(()=>{
-
+    db.sequelize.sync();
 })
 
 app.get("/", (req, res) => {
