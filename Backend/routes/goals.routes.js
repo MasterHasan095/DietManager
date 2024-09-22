@@ -6,6 +6,7 @@ module.exports = function (app){
     app.post("/goalTest", controller.test);
 
     app.post("/setGoal",authenticateToken, controller.setGoal);
+    app.post("/editGoal",authenticateToken, controller.editGoal);
     app.get("/getGoal",authenticateToken, controller.getGoal);
 
 }
