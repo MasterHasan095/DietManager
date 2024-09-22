@@ -12,12 +12,19 @@ exports.getGoal = async (req, res) => {
   }
 
   try {
-    const goal = await Goals.findOne({
+    const newGoal = await Goals.findOne({
       where: {
         userId: user_id,
       },
     });
 
+    const goal = {
+        goal_id: newGoal.id,
+        user_id: newGoal.userId,
+        protein: newGoal.protein,
+        calories: newGoal.calories,
+        sugar: newGoal.sugar
+    }
     return res.status(200).send({ goal: goal });
   } catch (err) {
     return res.status(500).send("Error fetching goal");
