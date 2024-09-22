@@ -62,29 +62,33 @@ exports.login = async (req, res) => {
 };
 
 exports.register = async (req, res)=>{
-    if (req.body.name){
-        console.log(req.body.name)
-    }else{
-        console.log("No name");
-        res.status(500).send("Error during login, no name");
-    }
+    const {firstName, lastName, username, email, password} = req.body;
+    // if (req.body.name){
+    //     console.log(req.body.name)
+    // }else{
+    //     console.log("No name");
+    //     res.status(500).send("Error during login, no name");
+    // }
 
-    if (req.body.password){
-        console.log(req.body.password)
-    }else{
-        console.log("No password");
-        res.status(500).send("Error during login, no password");
-    }
+    // if (req.body.password){
+    //     console.log(req.body.password)
+    // }else{
+    //     console.log("No password");
+    //     res.status(500).send("Error during login, no password");
+    // }
 
-    const{name, password} = req.body;
+    if (!firstName || !lastName || !username || !email || !password){
+            res.status(500).send("Invalid Data");
+    }
+    // const{name, password} = req.body;
 
 
     try{
         const user = await db.users.findOne({
             where: {
                 [Op.or]: [
-                    { email: name },
-                    { username: name }
+                    { email: email },
+                    { username: username }
                 ]
             }
         });
@@ -99,7 +103,10 @@ exports.register = async (req, res)=>{
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const newUser = await db.users.create({
-            username: name,
+            firstName: firstName,
+            lastName: lastName,
+            username: username,
+            email: email,
             password: hashedPassword
         });
 
