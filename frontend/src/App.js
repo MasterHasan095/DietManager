@@ -1,33 +1,25 @@
 // src/App.js
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Home from './components/Home';
+import Goal from './components/Goal';
 import Login from './components/Login';
 import Register from './components/Register';
-import ProtectedRoute from './components/ProtectedRoute';  // Import ProtectedRoute
+import ProtectedRoute from './components/ProtectedRoute'; 
 
 function App() {
+  const [user, setUser] = useState(null);  // State to hold logged-in user info
+
   return (
     <Router>
       <Routes>
-        {/* Default route redirects to login if user is not logged in */}
-        <Route 
-          path="/" 
-          element={<Navigate to="/login" />}  // Redirect base URL to login
-        />
-        <Route 
-          path="/login" 
-          element={<Login />}  // Public route
-        />
-        <Route 
-          path="/register" 
-          element={<Register />}  // Public route for register
-        />
-        {/* Home page is protected */}
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/login" element={<Login setUser={setUser} />} />
+        <Route path="/register" element={<Register />} />
         <Route
-          path="/home"
+          path="/goals"
           element={
             <ProtectedRoute>
-              <Home />  {/* Home is only accessible if user is authenticated */}
+              <Goal user={user} />
             </ProtectedRoute>
           }
         />
