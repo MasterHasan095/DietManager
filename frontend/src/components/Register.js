@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { register } from '../Services/authService';
+import '../styles/login.css'; // Import the CSS for styling
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -35,7 +36,7 @@ function Register() {
           value={username} 
           onChange={(e) => setUsername(e.target.value)} 
           required 
-        />
+          /><br/>
 
         <label>Email:</label>
         <input 
@@ -43,7 +44,7 @@ function Register() {
           value={email} 
           onChange={(e) => setEmail(e.target.value)} 
           required 
-        />
+          /><br/>
 
         <label>Password:</label>
         <input 
@@ -51,7 +52,7 @@ function Register() {
           value={password} 
           onChange={(e) => setPassword(e.target.value)} 
           required 
-        />
+          /><br/>
 
         <label>Confirm Password:</label>
         <input 
@@ -59,13 +60,15 @@ function Register() {
           value={confirmPassword} 
           onChange={(e) => setConfirmPassword(e.target.value)} 
           required 
-        />
+          /><br/>
         
         {error && <p className="error">{error}</p>}
 
-        <button type="submit">Register</button>
+        <button type="submit">Register</button><br/>
+
       </form>
-      <p>Already have an account? <a href="/login">Login here</a></p>
+      <p>Already have an account? <a href="/login">Login here</a></p><br/>
+
     </div>
   );
 }

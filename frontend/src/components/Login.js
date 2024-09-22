@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 import { login } from '../Services/authService';
+import '../styles/login.css'; // Import the CSS for styling
 
 function Login() {
   const [identifier, setIdentifier] = useState('');  // This can be either email or username
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       const response = await login({ identifier, password });
-//       localStorage.setItem('token', response.data.token);  // Store token
-//       window.location = '/';  // Redirect to dashboard after successful login
-//     } catch (err) {
-//       setError('Invalid credentials');
-//     }
-//   };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await login({ identifier, password });
+      localStorage.setItem('token', response.data.token);  // Store token
+      window.location = '/';  // Redirect to dashboard after successful login
+    } catch (err) {
+      setError('Invalid credentials');
+    }
+  };
 
   return (
     <div className="auth-form">
@@ -27,7 +28,7 @@ function Login() {
           value={identifier} 
           onChange={(e) => setIdentifier(e.target.value)} 
           required 
-        />
+        /><br/>
         
         <label>Password:</label>
         <input 
@@ -35,13 +36,15 @@ function Login() {
           value={password} 
           onChange={(e) => setPassword(e.target.value)} 
           required 
-        />
+          /><br/>
         
         {error && <p className="error">{error}</p>}
         
-        <button type="submit">Login</button>
+        <button type="submit">Login</button><br/>
+
       </form>
-      <p>Don't have an account? <a href="/register">Register here</a></p>
+      <p>Don't have an account? <a href="/register">Register here</a></p><br/>
+
     </div>
   );
 }
