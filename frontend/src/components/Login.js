@@ -1,19 +1,21 @@
-// Login.js
+// src/components/Login.js
 import React, { useState } from 'react';
 import { login } from '../Services/authService';
-import '../styles/login.css'; // Import the CSS for styling
+import { useNavigate } from 'react-router-dom';  // Import useNavigate for redirection
+import '../styles/login.css';  // Import the CSS for styling
 
 function Login() {
-  const [identifier, setIdentifier] = useState('');  // This can be either email or username
+  const [identifier, setIdentifier] = useState('');  // Can be email or username
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();  // Initialize the navigate hook
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await login({ identifier, password });
       localStorage.setItem('token', response.token);  // Store token
-      window.location = '/';  // Redirect to dashboard after successful login
+      navigate('/home');  // Redirect to Home page after successful login
     } catch (err) {
       setError(err.message || 'Invalid credentials');
     }

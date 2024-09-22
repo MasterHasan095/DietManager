@@ -1,19 +1,32 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+// src/components/Home.js
+import React, { useEffect, useState } from 'react';
+import { getProtectedData } from '../Services/DataService'; 
 
-function Home() {
+const Home = () => {
+  const [data, setData] = useState(null);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getProtectedData();  // Fetch protected data
+        setData(response);
+      } catch (err) {
+        setError(err.message || 'Failed to fetch data');
+      }
+    };
+
+    fetchData();  // Call the fetch function on component mount
+  }, []);
+
   return (
     <div>
-      <h2>Welcome to the Diet Manager!</h2>
-      <p>This is the main page after login or registration.</p>
-      <p>
-        If you already have an account, you can <Link to="/login">Log In</Link>.
-      </p>
-      <p>
-        If you are new here, feel free to <Link to="/register">Register</Link>.
-      </p>
+      <h2>Home</h2>
+      {error && <p>{error}</p>} 
+        <pre>{JSON.stringify(data, null, 2)}</pre> 
+        <p>Loading data...</p>
     </div>
   );
-}
+};
 
 export default Home;

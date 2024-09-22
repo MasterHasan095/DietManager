@@ -22,7 +22,6 @@ export const login = async (credentials) => {
   }
 };
 
-// Optionally, you can add other authentication-related functions
 
 // Logout user (clear token)
 export const logout = () => {
@@ -38,3 +37,5 @@ export const getCurrentUserToken = () => {
 export const isAuthenticated = () => {
   return !!localStorage.getItem('token');  // Check if token exists in local storage
 };
+
+ 

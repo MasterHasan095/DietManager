@@ -9,8 +9,8 @@ body {
 .app-container {
     min-height: 100vh; /* Ensure the container takes full height */
     display: flex; /* Use flexbox for alignment */
-    align-items: center; /* Center items vertically */
-    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically
+    /* justify-content: center; Center items horizontally */
     color: white; /* Change text color to contrast with background */
 }
 
