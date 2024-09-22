@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const db = require('./models');
+const {userRoutes} = require("./routes/user.routes.js")
 require('dotenv').config();
 
 app.use(express.json());
@@ -19,6 +20,7 @@ db.connectToSequelize.then(()=>{
 app.get("/", (req, res) => {
     return res.status(200).send("Initial link");
 });
+require("./routes/user.routes.js")(app);
 // async function testThisOut(){
 //     console.log("In this out");
 //     const Users = await db.users;
