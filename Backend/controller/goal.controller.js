@@ -7,7 +7,24 @@ exports.test = async (req, res)=>{
 }
 
 exports.getGoal = async (req, res) =>{
+    const {user_id} = req.query;
 
+    if (!user_id){
+        return res.status(500).send("Invalid data");
+    }
+
+    try{
+        const goal = await Goals.findOne({
+            where: {
+                userId: user_id
+            }
+        });
+        
+        return res.status(200).send({goal: goal});
+    
+    }catch(err){
+        return res.status(500).send("Error fetching goal");
+    }
 }
 
 exports.setGoal = async (req, res) =>{
