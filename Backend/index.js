@@ -30,14 +30,3 @@ require("./routes/user.routes.js")(app);
 require("./routes/goals.routes.js")(app);
 require("./routes/meals.routes.js")(app);
 require("./routes/recomMeals.routes.js")(app);
-
-
-// async function testThisOut(){
-//     console.log("In this out");
-//     const Users = await db.users;
-
-//     const data = await Users.findAll().then(data => {
-//         return data.map(e=> ({data: e.userId}))
-//     });
-//     console.log(data)
-// }
