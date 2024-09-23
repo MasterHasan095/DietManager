@@ -27,7 +27,7 @@ export const login = async (credentials) => {
 
 // Logout user (clear token)
 export const logout = () => {
-  isLoggedIn = true;
+  isLoggedIn = false;
   localStorage.removeItem('token');  // Remove token from local storage
 };
 

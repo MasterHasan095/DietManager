@@ -1,6 +1,7 @@
 // src/components/Home.js
 import React, { useEffect, useState } from 'react';
 import { getProtectedData } from '../Services/DataService'; 
+import { isAuthenticated } from '../Services/authService';
 
 const Home = () => {
   const [data, setData] = useState(null);
@@ -19,14 +20,14 @@ const Home = () => {
     fetchData();  // Call the fetch function on component mount
   }, []);
 
-  return (
+  return (isAuthenticated && (
     <div>
       <h2>Home</h2>
       {error && <p>{error}</p>} 
         <pre>{JSON.stringify(data, null, 2)}</pre> 
         <p>Loading data...</p>
     </div>
-  );
+  ));
 };
 
 export default Home;

@@ -3,8 +3,8 @@
 .circle-input {
     border: 2px solid #007bff;  /* Change to your preferred color */
     border-radius: 50%;  /* Makes the input circular */
-    width: 100px;  /* Adjust width as needed */
-    height: 100px;  /* Adjust height for a perfect circle */
+    width: 200px;  /* Adjust width as needed */
+    height: 200px;  /* Adjust height for a perfect circle */
     text-align: center;  /* Center the text */
     margin: 10px 0;  /* Spacing between inputs */
     font-size: 18px;  /* Font size */
@@ -13,5 +13,22 @@
   .circle-input:focus {
     outline: none;  /* Remove default outline */
     border-color: #0056b3;  /* Darker color on focus */
+  }
+
+  .input-set{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .data-input{
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .data-input label{
+    color: white;
   }
   

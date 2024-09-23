@@ -1,13 +1,14 @@
 import React from "react";
 import "../styles/Header.css";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
-import { logInStatus } from "../Services/authService";
+import { logInStatus, logout } from "../Services/authService";
 
 const Header = () => {
   const navigate = useNavigate(); // Initialize navigate
 
   const handleLogout = () => {
     localStorage.clear();
+    logout()
     navigate("/login"); // Redirect to login page
   };
 
