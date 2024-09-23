@@ -1,0 +1,10 @@
+header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.logout-button{
+    max-width: 100px;
+    max-height: 50px;
+}
