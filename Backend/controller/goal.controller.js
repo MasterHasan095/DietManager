@@ -17,15 +17,19 @@ exports.getGoal = async (req, res) => {
         userId: user_id,
       },
     });
-
-    const goal = {
+    if (newGoal) {
+      const goal = {
         goal_id: newGoal.id,
         user_id: newGoal.userId,
         protein: newGoal.protein,
         calories: newGoal.calories,
-        sugar: newGoal.sugar
+        sugar: newGoal.sugar,
+      };
+      return res.status(200).send({ goal: goal });
     }
-    return res.status(200).send({ goal: goal });
+    return res.status(200).send("No Goals");
+
+
   } catch (err) {
     return res.status(500).send("Error fetching goal");
   }
@@ -87,13 +91,12 @@ exports.editGoal = async (req, res) => {
       }
     );
 
-    console.log(updatedGoals)
-    if (updatedGoals > 0){
+    console.log(updatedGoals);
+    if (updatedGoals > 0) {
       return res.status(200).send({ goal: updatedGoals });
-    }else{
+    } else {
       return res.status(404).send({ message: "Goal not found" });
     }
-    
   } catch (err) {
     return res.status(400).send({ error: "Goal not set" });
   }
