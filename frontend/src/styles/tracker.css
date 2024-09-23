@@ -4,6 +4,7 @@
     height: 300px;
     background-color: wheat;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     text-align: center;
     align-items: center;
