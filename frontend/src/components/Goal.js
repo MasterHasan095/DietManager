@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';  // Import useNavigate
 import '../styles/Goal.css'  // Import CSS for styling
+import { getUserId } from '../Services/basicFunc';
 
 const API_URL = 'http://localhost:8000'; // Replace with your actual backend URL
 
@@ -43,7 +44,7 @@ const Goal = ({ user, setUser }) => {
     try {
       const token = localStorage.getItem('token');  // Retrieve token from local storage
       await axios.post(`${API_URL}/setGoal`, {
-        userId: userId,
+        user_id: getUserId(),
         protein,
         calories,
         sugar,
