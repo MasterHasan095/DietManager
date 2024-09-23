@@ -15,6 +15,8 @@ function Login() {
     try {
       const response = await login({ identifier, password });
       localStorage.setItem('token', response.token);  // Store token
+      localStorage.setItem('id', response.user.id);
+      localStorage.setItem('username', response.user.username);
       navigate('/goals');  // Redirect to Home page after successful login
     } catch (err) {
       setError(err.message || 'Invalid credentials');
