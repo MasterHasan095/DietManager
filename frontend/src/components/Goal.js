@@ -76,8 +76,6 @@ const Goal = ({ user, setUser }) => {
 
   return (
     <div>
-      <h1>Hello, {user?.name || 'User'}!</h1>  {/* Greeting header */}
-      <button onClick={handleLogout}>Logout</button>  {/* Logout button */}
       <h2>Set Your Dietary Goals</h2>
       <form onSubmit={handleSubmit}>
         <label>Protein (grams):</label>
