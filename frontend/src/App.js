@@ -12,6 +12,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Header from "./components/Header";
+import Meal from "./components/Meal"
 function App() {
   const [user, setUser] = useState(null); // State to hold logged-in user info
   const [goal, setGoal] = useState(null); // State to hold logged-in user info
@@ -31,6 +32,12 @@ function App() {
               <ProtectedRoute>
                 <Goal user={user} setUser={setUser} />
               </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/addMeal"
+            element={
+                <Meal />
             }
           />
         </Routes>
