@@ -33,7 +33,7 @@ const ViewRMeals = () => {
             user_id: userId, // Send user_id as a query parameter if needed
           },
         });
-        setRMeals(response.data); // Update state with the fetched meals
+        setRMeals(response.data.Rmeals); // Update state with the fetched meals
       } catch (error) {
         console.error("Failed to fetch recommended meals:", error);
       } finally {

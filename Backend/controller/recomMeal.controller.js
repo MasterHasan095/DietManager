@@ -55,5 +55,28 @@ exports.addRMeal = async (req, res) => {
 }
 
 exports.getRMeals = async (req, res) => {
-  
+  const user_id = req.query.user_id;
+
+  if (!user_id) {
+    return res.status(400).send("Invalid data");
+  }
+
+  console.log(user_id);
+  try{
+    const RMeals = await RMeal.findAll({
+      where: {
+        userId: user_id,
+      },
+    });
+
+
+    if (RMeals){
+      return res.status(200).send({Rmeals: RMeals});
+    }
+
+    return res.status(400).send({ error: "RMeals not fetched" });
+
+  }catch (err) {
+    return res.status(500).send("Error fetcing RMeals");
+  }
 }
