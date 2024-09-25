@@ -12,8 +12,6 @@ const Meal = () => {
     name: "",
     quantity: 0,
     protein: 0,
-    carbohydrates: 0,
-    fats: 0,
     calories: 0,
     sugar: 0
   });

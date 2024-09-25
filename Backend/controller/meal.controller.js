@@ -102,7 +102,7 @@ exports.getMealsForToday = async (req, res) => {
 };
 
 exports.addMeal = async (req, res) => {
-  const { user_id, name,quantity, protein, carbohydrates, fats, calories, sugar } =
+  const { user_id, name,quantity, protein, calories, sugar } =
     req.body;
 
   if (
@@ -110,8 +110,6 @@ exports.addMeal = async (req, res) => {
     !name ||
     !quantity ||
     !protein ||
-    !carbohydrates ||
-    !fats ||
     !calories ||
     !sugar
   ) {
@@ -124,8 +122,6 @@ exports.addMeal = async (req, res) => {
       name: name,
       quantity: quantity,
       protein: protein,
-      carbohydrates: carbohydrates,
-      fats: fats,
       calories: calories,
       sugar: sugar,
     });
