@@ -3,4 +3,8 @@ const controller = require("../controller/recomMeal.controller.js");
 
 module.exports = function (app){
     app.post("/recomMealTest", controller.test);
+
+    app.get("/getAllTypes", controller.getAllTypes);
+
+    app.post("/addRMeal", controller.addRMeal);
 }
