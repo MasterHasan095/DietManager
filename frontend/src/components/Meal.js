@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../Services/authService";
 import { getUserId } from "../Services/basicFunc"; // Assume this returns the authenticated user's ID
 import { getCurrentUserToken } from "../Services/authService"; // Assume this returns the current user token
 import "../styles/meal.css"; // Add your styling here
 
 const Meal = () => {
+    const navigate = useNavigate();
   const [mealData, setMealData] = useState({
     name: "",
     quantity: 0,
@@ -39,6 +41,7 @@ const Meal = () => {
         },
       });
       console.log("Meal added successfully:", response.data);
+      navigate("/home")
     } catch (error) {
       console.error("Error adding meal:", error);
     }
@@ -60,14 +63,6 @@ const Meal = () => {
           <div>
             <label>Protein (g): </label>
             <input type="number" name="protein" value={mealData.protein} onChange={handleChange} required />
-          </div>
-          <div>
-            <label>Carbohydrates (g): </label>
-            <input type="number" name="carbohydrates" value={mealData.carbohydrates} onChange={handleChange} required />
-          </div>
-          <div>
-            <label>Fats (g): </label>
-            <input type="number" name="fats" value={mealData.fats} onChange={handleChange} required />
           </div>
           <div>
             <label>Calories: </label>

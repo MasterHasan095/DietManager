@@ -1,6 +1,13 @@
 .home{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.circles{
+    display: flex;
+    justify-content: space-around ;
 }
 
 .add-meal-button{

@@ -10,15 +10,6 @@ module.exports = (sequelize) => {
         },
         name: {
             type: DataTypes.STRING,
-        },
-        day: {
-            type: DataTypes.STRING
-        },
-        startTime: {
-            type: DataTypes.TIME
-        },
-        endTime: {
-            type: DataTypes.TIME
-        },
+        }
     });
 };

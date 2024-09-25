@@ -6,6 +6,7 @@ import { getCurrentUserToken } from "../Services/authService";
 
 const Tracker = () => {
   const [trackerValue, setTrackerValue] = useState({
+    name: "",
     ogValue: 0,
     goalValue: 0,
   });
@@ -17,6 +18,7 @@ const Tracker = () => {
   const [meals, setMeals] = useState([]);
   const [values, setValues] = useState([
     {
+      name: "",
       ogValue: 0,
       goalValue: 0,
     },
@@ -74,7 +76,6 @@ const Tracker = () => {
         let sugar = 0;
 
         for (let meal of fetchedMeals.meals) {
-          console.log(meal);
           // Ensure values are numbers and add them
           protein += Number(meal.protein) || 0;
           calories += Number(meal.calories) || 0;
@@ -82,10 +83,11 @@ const Tracker = () => {
         }
 
         setValues([
-          { ogValue: protein, goalValue: 0 },
-          { ogValue: calories, goalValue: 0 },
-          { ogValue: sugar, goalValue: 0 },
+          { name: "Protein", ogValue: protein, goalValue: 0 },
+          { name: "Calories", ogValue: calories, goalValue: 0 },
+          { name: "Sugar", ogValue: sugar, goalValue: 0 },
         ]);
+        console.log(values)
         setMeals(fetchedMeals.meals); // Update the state with the fetched values
       }
 
@@ -116,14 +118,11 @@ const Tracker = () => {
   useEffect(() => {
     let index = 0;
 
-    if (meals.length > 0) {
-      console.log("meals", meals);
-    }
-
     if (values.length > 0) {
       // Set up the interval to cycle through the values
       const interval = setInterval(() => {
         index = (index + 1) % values.length; // Cycle through the values
+        console.log(values)
         setTrackerValue(values[index]); // Update tracker value
       }, 2000);
 
@@ -136,6 +135,7 @@ const Tracker = () => {
 
   return (
     <div className="trackerholder">
+      <div>{trackerValue.name}</div>
       <div>Og : {trackerValue.ogValue}</div>
       <div>Goal : {trackerValue.goalValue}</div>
     </div>

@@ -7,7 +7,7 @@ import Tracker from "./Tracker";
 import RMeal from "./RMeal";
 import Button from '@mui/material/Button'; // Import the Button component from Material-UI
 import { useNavigate } from 'react-router-dom';
-
+import History from "./History";
 import "../styles/home.css";
 
 const Home = () => {
@@ -46,11 +46,14 @@ const Home = () => {
       {/* {error && <p>{error}</p>} 
       <pre>{JSON.stringify(data, null, 2)}</pre> 
       <p>Loading data...</p> */}
-      <Tracker />
-      <RMeal />
+      <div className="circles">
+        <Tracker />
+        <RMeal />
+      </div>
       <Button variant="contained" onClick={addMeal} className="add-meal-button">
         Add Meal
       </Button>
+      <History />
     </div>
   );
 };
