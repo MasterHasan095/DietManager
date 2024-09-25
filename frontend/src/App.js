@@ -15,7 +15,7 @@ import Header from "./components/Header";
 import Meal from "./components/Meal";
 import AddRMeal from "./components/AddRMeal";
 import EditGoal from "./components/EditGoal";
-import viewRMeals from "./components/viewRMeals";
+import ViewRMeals from "./components/ViewRMeals";
 function App() {
   const [user, setUser] = useState(null); // State to hold logged-in user info
   const [goal, setGoal] = useState(null); // State to hold logged-in user info
@@ -58,7 +58,7 @@ function App() {
           <Route
             path="/viewRMeals"
             element={
-                <viewRMeals />
+                <ViewRMeals />
             }
           />
         </Routes>
