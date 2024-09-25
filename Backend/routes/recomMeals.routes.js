@@ -7,4 +7,6 @@ module.exports = function (app){
     app.get("/getAllTypes", controller.getAllTypes);
 
     app.post("/addRMeal", controller.addRMeal);
+
+    app.get("/getRMeals", controller.getRMeals);
 }

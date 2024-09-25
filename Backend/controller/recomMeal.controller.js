@@ -53,3 +53,5 @@ exports.addRMeal = async (req, res) => {
       }
 
 }
+
+exports.getRMeals = async (req, res) => 

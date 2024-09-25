@@ -34,9 +34,13 @@ const Header = () => {
   const handleEditGoal = () => {
     // Logic for editing goal
     handleMenuClose();
-    console.log("Edit Goal clicked");
     navigate("/editGoal")
   };
+
+  const handleViewRecommendedMeal = () => {
+    handleMenuClose();
+    navigate("/viewRMeals")
+  }
 
   return (
     <header>
@@ -56,6 +60,8 @@ const Header = () => {
           >
             <MenuItem onClick={handleAddRecommendedMeal}>Add Recommended Meal</MenuItem>
             <MenuItem onClick={handleEditGoal}>Edit Goal</MenuItem>
+            <MenuItem onClick={handleViewRecommendedMeal}>See All Recommended Meals</MenuItem>
+
           </Menu>
         </div>
       )}

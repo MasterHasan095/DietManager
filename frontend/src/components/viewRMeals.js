@@ -1,79 +1,71 @@
 import React, { useEffect, useState } from "react";
 import { isAuthenticated } from "../Services/authService";
 import {
-  TableCell,
-  TableHead,
+  Paper,
+  CircularProgress,
+  Table,
   TableBody,
+  TableCell,
   TableRow,
   TableContainer,
-  Paper,
-  Table,
-  CircularProgress,
+  TableHead,
 } from "@mui/material";
 import { getCurrentUserToken } from "../Services/authService";
 import { getUserId } from "../Services/basicFunc";
 import axios from "axios";
 
-const History = () => {
-  const [meals, setMeals] = useState([]); // Initialize as an empty array
+const ViewRMeals = () => {
+  const [RMeals, setRMeals] = useState([]); // Initialize as an empty array
   const [isLoading, setIsLoading] = useState(true); // Start with loading true
   const API_URL = "http://localhost:8000"; // Replace with your actual backend URL
   const token = getCurrentUserToken();
-
-  const fetchMeals = async () => {
-    try {
-      const user_id = getUserId();
-      const response = await axios.get(`${API_URL}/getMealsForToday`, {
-        headers: {
-          Authorization: `Bearer ${token}`, // Set the Authorization header
-          "Content-Type": "application/json", // Optional: specify content type
-        },
-        params: {
-          user_id, // Add user_id as a query parameter
-        },
-      });
-
-      console.log(response)
-      // Ensure response data is an array
-      return Array.isArray(response.data.meals) ? response.data.meals : [];
-    } catch (error) {
-      console.error("Failed to fetch meals:", error);
-      return []; // Return an empty array in case of error
-    }
-  };
+  const userId = getUserId();
 
   useEffect(() => {
-    const getMeals = async () => {
-      setIsLoading(true); // Start loading
-      const fetchedMeals = await fetchMeals();
-      setMeals(fetchedMeals); // Update the state with fetched meals
-      setIsLoading(false); // Stop loading after data is fetched
+    const fetchRMeals = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/getRMeals`, {
+          headers: {
+            Authorization: `Bearer ${token}`, // Set the Authorization header
+            "Content-Type": "application/json",
+          },
+          params: {
+            user_id: userId, // Send user_id as a query parameter if needed
+          },
+        });
+        setRMeals(response.data); // Update state with the fetched meals
+      } catch (error) {
+        console.error("Failed to fetch recommended meals:", error);
+      } finally {
+        setIsLoading(false); // Set loading to false regardless of success or failure
+      }
     };
 
-    getMeals();
-  }, []); // Empty array means this effect runs once on mount
+    fetchRMeals();
+  }, [token, userId, API_URL]);
 
   return isAuthenticated() ? (
     isLoading ? (
       <div style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
         <CircularProgress />
       </div>
-    ) : meals.length > 0 ? (
+    ) : RMeals.length > 0 ? (
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Meals</TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell>Type</TableCell>
               <TableCell>Protein</TableCell>
               <TableCell>Calories</TableCell>
               <TableCell>Sugar</TableCell>
-
             </TableRow>
           </TableHead>
           <TableBody>
-            {meals.map((row, index) => (
+            {RMeals.map((row, index) => (
               <TableRow key={index}>
                 <TableCell>{row.name}</TableCell>
+                <TableCell>{row.mealType}</TableCell>
                 <TableCell>{row.protein}</TableCell>
                 <TableCell>{row.calories}</TableCell>
                 <TableCell>{row.sugar}</TableCell>
@@ -86,8 +78,8 @@ const History = () => {
       <div>No meals found</div> // Handle the case where meals array is empty
     )
   ) : (
-    <div>Not authorized</div>
+    <div>Unauthorized</div>
   );
 };
 
-export default History;
+export default ViewRMeals;
