@@ -83,7 +83,7 @@ const History = () => {
         </Table>
       </TableContainer>
     ) : (
-      <div>No meals found</div> // Handle the case where meals array is empty
+      <div>No meals logged for today</div> // Handle the case where meals array is empty
     )
   ) : (
     <div>Not authorized</div>

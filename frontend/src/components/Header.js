@@ -42,6 +42,11 @@ const Header = () => {
     navigate("/viewRMeals")
   }
 
+  const handleViewReports = () => {
+    handleMenuClose();
+    navigate("/reports")
+  }
+
   return (
     <header>
       <h1 onClick={()=>{navigate("/home")}}>Diet Manager</h1>
@@ -61,6 +66,7 @@ const Header = () => {
             <MenuItem onClick={handleAddRecommendedMeal}>Add Recommended Meal</MenuItem>
             <MenuItem onClick={handleEditGoal}>Edit Goal</MenuItem>
             <MenuItem onClick={handleViewRecommendedMeal}>See All Recommended Meals</MenuItem>
+            <MenuItem onClick={handleViewReports}>See Reports</MenuItem>
 
           </Menu>
         </div>

@@ -16,13 +16,16 @@ import Meal from "./components/Meal";
 import AddRMeal from "./components/AddRMeal";
 import EditGoal from "./components/EditGoal";
 import ViewRMeals from "./components/ViewRMeals";
+import Reports from "./components/Reports";
+
+
 function App() {
   const [user, setUser] = useState(null); // State to hold logged-in user info
   const [goal, setGoal] = useState(null); // State to hold logged-in user info
   return (
     <>
       <Router>
-      <Header />
+        <Header />
 
         <Routes>
           <Route path="/" element={<Navigate to="/login" />} />
@@ -37,30 +40,12 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/addMeal"
-            element={
-                <Meal />
-            }
-          />
-          <Route
-            path="/addRMeal"
-            element={
-                <AddRMeal />
-            }
-          />
-          <Route
-            path="/editGoal"
-            element={
-                <EditGoal />
-            }
-          />
-          <Route
-            path="/viewRMeals"
-            element={
-                <ViewRMeals />
-            }
-          />
+          <Route path="/addMeal" element={<Meal />} />
+          <Route path="/addRMeal" element={<AddRMeal />} />
+          <Route path="/editGoal" element={<EditGoal />} />
+          <Route path="/viewRMeals" element={<ViewRMeals />} />
+          <Route path="/reports" element={<Reports />} />
+
         </Routes>
       </Router>
     </>

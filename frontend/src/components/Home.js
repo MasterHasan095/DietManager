@@ -51,7 +51,7 @@ const Home = () => {
         <RMeal />
       </div>
       <Button variant="contained" onClick={addMeal} className="add-meal-button">
-        Add Meal
+        Log Meal
       </Button>
       <History />
     </div>

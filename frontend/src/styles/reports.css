@@ -1,0 +1,16 @@
+.reports-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .chart-row {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+  }
+  
+  .chart-container {
+    width: 30%;
+  }
+  
